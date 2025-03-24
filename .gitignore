@@ -1,0 +1,63 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node modules
+node_modules/
+traffic/node_modules/
+
+# Build outputs
+dist/
+dist-ssr/
+traffic/dist/
+traffic/dist-ssr/
+
+# Local environment files
+*.local
+.env
+.env.*.local
+
+# Editor directories and files
+.vscode/
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Coverage and test reports
+coverage/
+Traffic/coverage/
+
+# Next.js build output
+.next/
+Traffic/.next/
+
+# Yarn/PNPM
+.yarn/
+.pnp.*
+.pnpm-debug.log*
+
+# Temporary files
+tmp/
+temp/
+traffic/tmp/
+traffic/temp/
+
+# Lint cache
+eslintcache
+traffic/.eslintcache
+
+# TypeScript
+*.tsbuildinfo
+
+# Git specific
+.git/
