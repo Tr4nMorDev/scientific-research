@@ -3,8 +3,9 @@ name: Build Frontend
 on:
   push:
     branches:
-      - main
+      - basic-update
   pull_request:
+    branches: [main]
 
 jobs:
   build:
