@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - basic-update
+      - architect
   pull_request:
     branches: [main]
 
