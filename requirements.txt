@@ -1,8 +1,27 @@
-flask_socketio
-flask
-flask-cors
-ultralytics
-torch
-torchvision
-opencv-python
-numpy
+# Web Framework
+Flask==3.1.0
+flask-cors==5.0.1
+Flask-SocketIO==5.5.1
+
+# Computer Vision & ML
+opencv-python==4.11.0.86
+ultralytics==8.3.99
+torch==2.6.0
+torchvision==0.21.0
+
+# Data Processing
+numpy==2.1.1
+pandas==2.2.3
+
+# Database
+SQLAlchemy
+psycopg2-binary
+
+# Utils
+python-dotenv
+python-socketio==5.12.1
+python-engineio==4.11.2
+
+# Optional
+tqdm==4.67.1
+Pillow==11.1.0 

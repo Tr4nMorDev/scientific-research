@@ -9,15 +9,17 @@ project_root/
 ├── .github/
 │ └── workflows/
 │ └── python-test.yml # GitHub Actions workflow
+| └── frontend-test.yml
 ├── vehicle_detection/
 │ ├── init.py
 │ ├── server.py # Flask server
 │ ├── src/
 │ │ ├── init.py
 │ │ └── yolo_model.py # YOLO model implementation
-│ ├── static/ # Static files cho frontend
-│ └── templates/ # HTML templates
-├── frontend/ # Frontend code
+│ |── models/
+| └── .../
+├── test/ # script test
+├── frontend-traffic/ # Frontend code
 ├── requirements.txt # Python dependencies
 ├── .gitignore
 └── README.md
