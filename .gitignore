@@ -61,3 +61,11 @@ traffic/.eslintcache
 
 # Git specific
 .git/
+
+
+# Ignore all __pycache__ directories
+**/__pycache__/
+*.py[cod]
+
+# Thêm vào .gitignore
+.env

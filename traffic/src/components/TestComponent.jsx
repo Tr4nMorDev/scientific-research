@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -6,9 +6,23 @@ import {
   Popup,
   Polyline,
 } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
 
 const TestComponent = () => {
-  const [polylineCoords, setPolylineCoords] = useState([]); // Thêm useState để lưu tọa độ Polyline
+  const [polylineCoords, setPolylineCoords] = useState([]);
+  const [map, setMap] = useState(null);
+
+  const mapStyle = {
+    width: "100%",
+    height: "600px",
+    margin: "20px 0",
+  };
+
+  useEffect(() => {
+    if (map) {
+      map.invalidateSize();
+    }
+  }, [map]);
 
   const loadRoutes = async () => {
     try {
@@ -31,7 +45,6 @@ const TestComponent = () => {
         return;
       }
 
-      // Chuyển đổi từ [lng, lat] -> [lat, lng] để dùng với Leaflet
       const formattedCoordinates = coordinates.map((coord) => [
         coord[1],
         coord[0],
@@ -39,7 +52,11 @@ const TestComponent = () => {
 
       console.log("Tọa độ Polyline:", formattedCoordinates);
 
-      setPolylineCoords(formattedCoordinates); // Cập nhật tọa độ Polyline
+      setPolylineCoords(formattedCoordinates);
+
+      if (map && formattedCoordinates.length > 0) {
+        map.fitBounds(formattedCoordinates);
+      }
     } catch (error) {
       console.error("Lỗi khi gọi API OSRM:", error);
     }
@@ -49,17 +66,31 @@ const TestComponent = () => {
     <div>
       <button onClick={loadRoutes}>Tải tuyến đường</button>
 
-      <MapContainer
-        center={[10.80415, 106.68687]}
-        zoom={14}
-        style={{ height: "100%", width: "100%" }}
-      >
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      <div style={mapStyle}>
+        <MapContainer
+          center={[10.80415, 106.68687]}
+          zoom={14}
+          style={{ height: "100%", width: "100%" }}
+          whenCreated={setMap}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
 
-        {polylineCoords.length > 0 && (
-          <Polyline positions={polylineCoords} color="red" />
-        )}
-      </MapContainer>
+          <Marker position={[10.80415, 106.68687]}>
+            <Popup>Điểm bắt đầu</Popup>
+          </Marker>
+
+          <Marker position={[10.81118, 106.69085]}>
+            <Popup>Điểm kết thúc</Popup>
+          </Marker>
+
+          {polylineCoords.length > 0 && (
+            <Polyline positions={polylineCoords} color="red" />
+          )}
+        </MapContainer>
+      </div>
     </div>
   );
 };
