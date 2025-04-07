@@ -62,6 +62,9 @@ traffic/.eslintcache
 # Git specific
 .git/
 
+# Bỏ qua cache của pytest
+.pytest_cache/
+
 
 # Ignore all __pycache__ directories
 **/__pycache__/
