@@ -22,7 +22,7 @@ class TrafficDetector:
                 'lng': 106.7001,
                 'video_path': 'videos/dien_bien_phu.mp4',  # Sử dụng dấu '/' thay vì '\\'
                 'name': 'Điện Biên Phủ',
-                'address': 'Điện Biên Phủ, Bình Thạnh'
+                'address': 'Điện Biên Phủ, Bình Thạnh '
             },
             'Bình Quới': {
                 'lat': 10.7988, 
