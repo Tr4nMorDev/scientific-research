@@ -1,11 +1,18 @@
 from flask import Flask, Response, jsonify, send_from_directory
 from flask_cors import CORS
 from flask_socketio import SocketIO
-from vehicle_detection.config.database import init_db
-from vehicle_detection.config.settings import APP_CONFIG
+from .config.database import init_db
+from .config.settings import APP_CONFIG
 import os
 import cv2
 from .src.traffic_detection import TrafficDetector
+from .config.database import init_db , init_postgres_db
+
+if init_postgres_db():
+    print("Database and tables created successfully.")
+else:
+    print("Error creating database or tables.")
+
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -31,13 +38,17 @@ def generate_frames(video_path):
             continue
             
         # Process frame with YOLO
-        results = detector.detect(frame)
+        results = detector.model(frame)
         
         # Draw bounding boxes and count vehicles
-        vehicle_count = results['vehicle_count']
-        for vehicle in results['vehicles']:
-            x1, y1, x2, y2 = vehicle['bbox']
-            cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
+        vehicle_count = 0
+        for r in results:
+            boxes = r.boxes
+            for box in boxes:
+                if box.cls in [2, 3, 5, 7]:  # Vehicle classes in COCO
+                    vehicle_count += 1
+                    x1, y1, x2, y2 = box.xyxy[0]
+                    cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
         
         # Add vehicle count text
         cv2.putText(frame, f'Vehicles: {vehicle_count}', (10, 30), 

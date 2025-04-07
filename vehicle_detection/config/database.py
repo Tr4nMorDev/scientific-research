@@ -20,6 +20,7 @@ def init_db(app):
     Returns:
         SQLAlchemy instance
     """
+
     app.config['SQLALCHEMY_DATABASE_URI'] = get_database_url(testing=app.config.get('TESTING', False))
     app.config.update(SQLALCHEMY_CONFIG)
     
@@ -38,9 +39,10 @@ def init_postgres_db():
             user=DB_CONFIG['user'],
             password=DB_CONFIG['password'],
             host=DB_CONFIG['host'],
-            port=DB_CONFIG['port']
+            port=DB_CONFIG['port'],
+            database=DB_CONFIG['database'],
         )
-        
+
         conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
         cursor = conn.cursor()
         
