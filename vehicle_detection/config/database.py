@@ -27,6 +27,13 @@ def init_db(app):
     db.init_app(app)
     return db
 
+sample_data = [
+    ("Nguyen Van Linh - Quan 7", 0.75, 120),
+    ("Xa Lo Ha Noi - Thu Duc", 0.60, 90),
+    ("Vo Van Kiet - Quan 5", 0.85, 200),
+    ("Pham Van Dong - Go Vap", 0.55, 80),
+]
+
 def init_postgres_db():
     """
     Khởi tạo PostgreSQL database và các bảng cần thiết
@@ -40,7 +47,6 @@ def init_postgres_db():
             password=DB_CONFIG['password'],
             host=DB_CONFIG['host'],
             port=DB_CONFIG['port'],
-            database=DB_CONFIG['database'],
         )
 
         conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
@@ -58,8 +64,15 @@ def init_postgres_db():
         cursor.close()
         conn.close()
 
+        conn = psycopg2.connect(
+            user=DB_CONFIG['user'],
+            password=DB_CONFIG['password'],
+            host=DB_CONFIG['host'],
+            port=DB_CONFIG['port'],
+            database=DB_CONFIG['database']
+        )
+        
         # Connect to the new database and create tables
-        conn = psycopg2.connect(**DB_CONFIG)
         cursor = conn.cursor()
         create_tables(cursor)
         conn.commit()

@@ -11,7 +11,6 @@ from .config.database import init_db , init_postgres_db , create_all
 # 1. Khởi tạo Flask app
 app = Flask(__name__)
 
-
 # Initialize database
 init_db(app)
 
@@ -96,4 +95,4 @@ if __name__ == '__main__':
         host=APP_CONFIG['host'],
         port=APP_CONFIG['port'],
         debug=APP_CONFIG['debug']
-    )
+)

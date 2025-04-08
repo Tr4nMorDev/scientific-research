@@ -13,28 +13,28 @@ class TrafficDetector:
             'Hàng Xanh': {
                 'lat': 10.8035, 
                 'lng': 106.6963,
-                'video_path': 'videos/hang_xanh.mp4',  # Sử dụng dấu '/' thay vì '\\'
+                'video_path': 'videos/road_1.mp4',  # Sử dụng dấu '/' thay vì '\\'
                 'name': 'Hàng Xanh',
                 'address': 'Ngã tư Hàng Xanh, Bình Thạnh'
             },
             'Điện Biên Phủ': {
                 'lat': 10.8012, 
                 'lng': 106.7001,
-                'video_path': 'videos/dien_bien_phu.mp4',  # Sử dụng dấu '/' thay vì '\\'
+                'video_path': 'videos/road_2.mp4',  # Sử dụng dấu '/' thay vì '\\'
                 'name': 'Điện Biên Phủ',
                 'address': 'Điện Biên Phủ, Bình Thạnh '
             },
             'Bình Quới': {
                 'lat': 10.7988, 
                 'lng': 106.7045,
-                'video_path': 'videos/binh_quoi.mp4',  # Sử dụng dấu '/' thay vì '\\'
+                'video_path': 'videos/road_3.mp4',  # Sử dụng dấu '/' thay vì '\\'
                 'name': 'Bình Quới',
                 'address': 'Bình Quới, Bình Thạnh'
             },
             'Bình Lợi': {
                 'lat': 10.7955, 
                 'lng': 106.7089,
-                'video_path': 'videos/binh_loi.mp4',  # Sử dụng dấu '/' thay vì '\\'
+                'video_path': 'videos/road_4.mp4',  # Sử dụng dấu '/' thay vì '\\'
                 'name': 'Bình Lợi',
                 'address': 'Cầu Bình Lợi, Bình Thạnh'
             }
