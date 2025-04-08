@@ -1,12 +1,19 @@
 from flask import Flask, Response, jsonify, send_from_directory
 from flask_cors import CORS
 from flask_socketio import SocketIO
-from .config.database import init_db
 from .config.settings import APP_CONFIG
 import os
 import cv2
 from .src.traffic_detection import TrafficDetector
-from .config.database import init_db , init_postgres_db
+from .config.database import init_db , init_postgres_db , create_all
+
+
+# 1. Khởi tạo Flask app
+app = Flask(__name__)
+
+
+# Initialize database
+init_db(app)
 
 if init_postgres_db():
     print("Database and tables created successfully.")
@@ -14,17 +21,12 @@ else:
     print("Error creating database or tables.")
 
 
-# Initialize Flask app
-app = Flask(__name__)
-
 # Apply configurations
 if APP_CONFIG['cors_enabled']:
     CORS(app)
 
 socketio = SocketIO(app)
 
-# Initialize database
-init_db(app)
 
 # Initialize traffic detector
 detector = TrafficDetector()
